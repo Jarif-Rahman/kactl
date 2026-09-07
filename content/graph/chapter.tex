@@ -15,6 +15,15 @@
 	\kactlimport{GomoryHu.h}
 
 \section{Matching}
+	\subsection{Matching Basics}
+	\begin{itemize}
+		\item To achieve maximum matching in a bipartite graph, keep altering augmenting path until no more exist. 
+		\item \textbf{Hall's Theorem}: A bipartite graph $G$ with parts $X$ and $Y$ has a matching that covers all vertices in $X$ iff for every subset $S \subseteq X$, the number of neighbors of $S$ is at least as large as the size of $S$.
+		\item \textbf{Kőnig's Theorem}: In any bipartite graph, the number of edges in a maximum matching equals the number of vertices in a minimum vertex cover, and it is complementary to the maximum independent set.
+		\item \textbf{Node-disjoint path cover (for DAG)}: We can find a minimum node-disjoint path cover by constructing a matching graph where each node of the original graph is represented by two nodes: a left node and a right node. There is an edge from a left node to a right node if there is such an edge in the original graph. Minimum node-disjoint path cover = number of nodes - maximum matching in the matching graph.
+		\item \textbf{General path cover (for DAG)} A minimum general path cover can be found almost like a minimum node-disjoint path cover. It suffices to add some new edges to the matching graph so there is an edge a → b always when there is a path from a to b in the original graph (possibly through several edges).
+		\item \textbf{Dilworth's theorem}: In a DAG, the size of the minimum general path cover equals the size of the maximum antichain (set of nodes such that no node is reachable from another).
+	\end{itemize}
 	\kactlimport{HopcroftKarp.h}
 	\kactlimport{DFSMatching.h}
 	\kactlimport{MinimumVertexCover.h}

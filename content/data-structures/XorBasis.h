@@ -3,13 +3,13 @@
  * Date: 2026-10-02
  * License: CC0
  * Source:
- * Description: XOR linear basis over GF(2). Stores independent values by highest
- *              set bit. USE: XorBasis xb; xb.add(x); xb.max_xor(); xb.can_make(x).
+ * Description: XOR linear basis over GF(2), indexed by highest set bit.
+ *              USE: XorBasis xb; xb.add(x); xb.max\_xor(x); xb.min\_xor(x); xb.can\_make(x).
  *              add(x) inserts x if independent and returns whether rank increased.
- *              can_make(x) checks if x can be formed by xor of inserted values.
- *              max_xor(x) returns the maximum value obtainable from x by xoring
- *              any subset of inserted values. rank() returns basis dimension.
- * Time: O(LOG) per operation
+ *              can\_make(x) checks whether x is representable as xor of inserted values.
+ *              max\_xor(x) / min\_xor(x) return the maximum / minimum value obtainable
+ *              from x by xoring any subset of inserted values. rank() returns basis dimension.
+ * Time: O(LOG)
  * Status: tested
  */
 

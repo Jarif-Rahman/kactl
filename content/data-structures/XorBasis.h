@@ -4,7 +4,7 @@
  * License: CC0
  * Source:
  * Description: XOR linear basis over GF(2), indexed by highest set bit.
- *              USE: XorBasis xb; xb.add(x); xb.max\_xor(x); xb.min\_xor(x); xb.can\_make(x).
+ *              Use: XorBasis xb; xb.add(x); xb.max\_xor(x); xb.min\_xor(x); xb.can\_make(x).
  *              add(x) inserts x if independent and returns whether rank increased.
  *              can\_make(x) checks whether x is representable as xor of inserted values.
  *              max\_xor(x) / min\_xor(x) return the maximum / minimum value obtainable

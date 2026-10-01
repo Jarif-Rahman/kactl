@@ -3,7 +3,7 @@
  * Date: 2026-10-02
  * License: CC0
  * Source:
- * Description: Trie for lowercase strings. USE: Trie tr; tr.insert(s);
+ * Description: Trie for lowercase strings. Use Trie tr; tr.insert(s);
  *              find(s) checks exact membership; search(s) sums cnt over prefix
  *              nodes of s; lcp(s) returns longest prefix present in the trie.
  *              cnt stores how many inserted strings pass through a node.

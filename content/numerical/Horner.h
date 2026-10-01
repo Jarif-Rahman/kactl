@@ -4,7 +4,7 @@
  * License: CC0
  * Source:
  * Description: Horner's method for polynomial evaluation.
- *              USE: horner(a, x) evaluates
+ *              Use horner(a, x) evaluates
  *              A(x)=a[0]x^(n-1)+a[1]x^(n-2)+...+a[n-1].
  *              Rewrites the polynomial as (...((a[0]x+a[1])x+a[2])x...),
  *              avoiding repeated exponentiation and evaluating in linear time.

@@ -1,4 +1,16 @@
-#include "Point.h>
+/**
+ * Author: Yeo Swe Hon
+ * Date: 2026-10-02
+ * License: CC0
+ * Source:
+ * Description: Half-plane intersection; keeps the left side of each directed line.
+ *              Use auto poly = HPI(lines). Returns vertices of the bounded
+ *              intersection polygon in CCW order. Assumes the intersection is bounded.
+ * Time: O(N \log N)
+ * Status: tested
+ */
+
+#include "Point.h"
 const ld EPS = 1e-12;
 
 struct Line{ // left half-plane intersection (keep points on left of directed lines)

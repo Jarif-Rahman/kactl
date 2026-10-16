@@ -39,6 +39,33 @@
 
 	\subsection{Binomials}
 		\kactlimport{multinomial.h}
+		
+	
+
+    \subsection{Formula Tricks}
+        \begingroup
+        \small
+        \setlength{\abovedisplayskip}{2pt}
+        \setlength{\belowdisplayskip}{2pt}
+        \setlength{\jot}{1pt}
+
+        \begin{gather*}
+            \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}\\
+            k\binom{n}{k} = n\binom{n-1}{k-1}\\
+            \binom{n}{k}\binom{k}{r} = \binom{n}{r}\binom{n-r}{k-r}\\
+            \sum_{i=k}^{n}\binom{i}{k} = \binom{n+1}{k+1}\\
+            \sum_i\binom{a}{i}\binom{b}{r-i} = \binom{a+b}{r}\\
+            \sum_{i=0}^{n}\binom{n}{i}^2 = \binom{2n}{n}\\
+            \sum_{i=0}^{n}i\binom{n}{i} = n2^{n-1}\\
+            \sum_{i=0}^{n}i(i-1)\binom{n}{i} = n(n-1)2^{n-2}
+        \end{gather*}
+
+        Ballot: $a\ge b\ge0$, $a$ up, $b$ down,
+        no negative prefixes.
+        \[ \binom{a+b}{b} - \binom{a+b}{b-1} \]
+
+        \endgroup
+
 
 \section{General purpose numbers}
 	\subsection{Bernoulli numbers}
@@ -99,3 +126,5 @@
 			\item ways a convex polygon with $n+2$ sides can be cut into triangles by connecting vertices with straight lines.
 			\item permutations of $[n]$ with no 3-term increasing subseq.
 		\end{itemize}
+	
+	

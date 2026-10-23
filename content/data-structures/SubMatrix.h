@@ -6,7 +6,7 @@
  * Description: 2D prefix sum, sum(x1,y1,x2,y2) returns inclusive rectangle. SubMatrix<ll> sm(grid), (x1,y1) -> (x2,y2) (0-based indexing)
  * Usage:
  * SubMatrix<int> m(matrix);
- * m.sum(0, 0, 2, 2); // top left 4 elements
+ * m.sum(0, 0, 1, 1); // top left 4 elements
  * Time: O(N^2 + Q)
  * Status: Tested on Kattis
  */

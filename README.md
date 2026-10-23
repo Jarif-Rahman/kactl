@@ -1,6 +1,6 @@
 # KACTL
 
-This repo hosts KACTL, [KTH](https://en.wikipedia.org/wiki/KTH_Royal_Institute_of_Technology)'s ICPC team reference document.
+This repo hosts KACTL, [Stars Compiled](https://en.wikipedia.org/wiki/Nanyang_Technological_University)'s ICPC team reference document.
 It consists of 25 pages of copy-pasteable C++ code, for use in ICPC-style programming competitions.
 
 See [kactl.pdf](./kactl.pdf) for the final, browsable version, and [content/](./content/) for raw source code.
@@ -71,3 +71,30 @@ Presumably good will is to be assumed from other authors, though, and in many ca
 To help trace things back, sources and authors are noted in source files.
 
 Everything in `stress-tests` is implicitly CC0, except reference implementations taken from around the Internet.
+
+## Team Logo & Credits
+
+![Stars Compiled Team Logo](./content/Stars_Compiled_Logo.jpg)
+
+The **Stars Compiled** team logo is a custom, AI-assisted composition created for the NTU ICPC team.
+
+### Credits & Attributions
+
+- **KACTL:** Based on the [KTH Algorithm Competition Template Library](https://github.com/kth-competitive-programming/kactl), with team-specific customisations and additions.
+- **Patrick Star:** Character from *SpongeBob SquarePants*, created by Stephen Hillenburg. © Nickelodeon / Paramount.
+- **Kirby:** Character from the *Kirby* video game series. © Nintendo / HAL Laboratory.
+- **Toad:** Character from the *Super Mario* franchise. © Nintendo.
+- **Pepe the Frog:** Character created by Matt Furie.
+- **Other Characters and Memes:** Teddy bear, reaction images, cat meme, and other featured graphics are credited to their respective original creators and rights holders.
+- **Profile Pictures:** Individual photographs and profile pictures belong to their respective owners.
+- **Geometric Emblem:** Credit belongs to the original creator or rights holder.
+- **AI-Assisted Artwork:** Overall composition, starry background, decorative borders, typography, and visual effects created with assistance from ChatGPT (OpenAI).
+- **Team Concept:** Stars Compiled, NTU ICPC Team.
+
+### Disclaimer
+
+The team logo is unofficial, fan-made artwork intended for non-commercial, educational, and ICPC team-identification purposes. 
+
+All third-party characters, images, memes, trademarks, and associated intellectual property remain the property of their respective owners. 
+
+Stars Compiled does not claim ownership of third-party materials and is not affiliated with or endorsed by Nickelodeon, Paramount, Nintendo, HAL Laboratory, OpenAI, or other respective rights holders.

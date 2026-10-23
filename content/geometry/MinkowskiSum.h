@@ -19,5 +19,5 @@ auto minkowski(vector<P> a, vector<P> b) {
     for (int p1 = 0, p2 = 0; p1 < n || p2 < m;)
         if (p2 == m || ( p1 < n && sgn(s1[p1].cross(s2[p2])) >= 0 )) c.push_back(c.back() + s1[p1++]);
         else c.push_back(c.back() + s2[p2++]);
-    return convex_hull(c);
+    return ConvexHull(c);
 }

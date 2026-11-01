@@ -6,10 +6,16 @@
 	\kactlimport{TopoSort.h}
 
 \section{Network flow}
+	\subsection{Advanced Flow Models}
+		\textbf{Flow with lower bounds:} For edge $u\to v$ with $l\le f\le r$, replace its capacity by $r-l$. Define $b(v)=\sum_{\mathrm{in}}l-\sum_{\mathrm{out}}l$. Add super-source $S$ and super-sink $T$: if $b(v)>0$, add $S\to v$ with capacity $b(v)$; otherwise add $v\to T$ with capacity $-b(v)$. Feasible iff all edges leaving $S$ are saturated. For bounded $s$-$t$ flow, also add $t\to s$ with infinite capacity before checking feasibility.\\
+		\textbf{Minimum cost circulation:} Use the lower-bound reduction with edge cost preserved; run min-cost flow from $S$ to $T$. Add $\sum_e l_ec_e$ to the result. For unrestricted circulation, negative-cost residual cycles must also be accounted for.\\
+		\textbf{Maximum density induced subgraph:} Maximize $|E(S)|/|S|$. Binary search density $d$. Let $m=|E|$; add $s\to v$ with capacity $m$, $v\to t$ with capacity $m+2d-\deg(v)$, and both directed edges of capacity $1$ for every undirected edge. Density $>d$ exists iff min-cut $<mn$ (for nonempty $S$).\\
+		\textbf{Minimum vertex cover (bipartite):} After maximum matching, DFS from unmatched left vertices via unmatched left-to-right edges and matched right-to-left edges. If $Z$ is the set reached, the minimum vertex cover is $(L\setminus Z)\cup(R\cap Z)$.
+
 	\kactlimport{PushRelabel.h}
 	\kactlimport{MinCostMaxFlow.h}
-	\kactlimport{EdmondsKarp.h}
 	\kactlimport{Dinic.h}
+	\kactlimport{EdmondsKarp.h}
 	\kactlimport{MinCut.h}
 	\kactlimport{GlobalMinCut.h}
 	\kactlimport{GomoryHu.h}

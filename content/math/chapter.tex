@@ -72,6 +72,11 @@ y = r\sin\theta\sin\phi & \theta = \textrm{acos}(z/\sqrt{x^2+y^2+z^2})\\
 z = r\cos\theta & \phi = \textrm{atan2}(y,x)
 \end{array}\]
 
+\subsection{Pick's Theorem}
+For a simple lattice polygon with area $A$, $I$ interior lattice points and $B$ boundary lattice points:\\
+$A=I+\frac{B}{2}-1$\\
+$B=\sum_{\text{edges}}\gcd(|x_2-x_1|,|y_2-y_1|)$.
+
 \section{Derivatives/Integrals}
 \begin{align*}
 	\dfrac{d}{dx}\arcsin x = \dfrac{1}{\sqrt{1-x^2}} &&& \dfrac{d}{dx}\arccos x = -\dfrac{1}{\sqrt{1-x^2}} \\

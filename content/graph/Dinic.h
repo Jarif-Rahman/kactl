@@ -1,53 +1,83 @@
 /**
- * Author: chilli
- * Date: 2019-04-26
+ * Author: Yeo Swe Hon
+ * Date: 2026-10-24
  * License: CC0
- * Source: https://cp-algorithms.com/graph/dinic.html
- * Description: Flow algorithm with complexity $O(VE\log U)$ where $U = \max |\text{cap}|$.
- * $O(\min(E^{1/2}, V^{2/3})E)$ if $U = 1$; $O(\sqrt{V}E)$ for bipartite matching.
- * Status: Tested on SPOJ FASTFLOW and SPOJ MATCHING, stress-tested
+ * Description: Use Dinic mf(n), \texttt{add\_edge(u,v,cap)},
+ *              \texttt{max\_flow(s,t)} to compute max flow.
+ *              \texttt{is\_in\_source\_side\_of\_min\_cut(v)}
+ *              checks if v is on the source side of a min cut.
+ *              Call after max flow. 0-indexed, no self-loops, s != t.
+ * Time: O(V^2 E)
  */
+
 #pragma once
 
 struct Dinic {
-	struct Edge {
-		int to, rev;
-		ll c, oc;
-		ll flow() { return max(oc - c, 0LL); } // if you need flows
-	};
-	vi lvl, ptr, q;
-	vector<vector<Edge>> adj;
-	Dinic(int n) : lvl(n), ptr(n), q(n), adj(n) {}
-	void addEdge(int a, int b, ll c, ll rcap = 0) {
-		adj[a].push_back({b, sz(adj[b]), c, c});
-		adj[b].push_back({a, sz(adj[a]) - 1, rcap, rcap});
-	}
-	ll dfs(int v, int t, ll f) {
-		if (v == t || !f) return f;
-		for (int& i = ptr[v]; i < sz(adj[v]); i++) {
-			Edge& e = adj[v][i];
-			if (lvl[e.to] == lvl[v] + 1)
-				if (ll p = dfs(e.to, t, min(f, e.c))) {
-					e.c -= p, adj[e.to][e.rev].c += p;
-					return p;
-				}
-		}
-		return 0;
-	}
-	ll calc(int s, int t) {
-		ll flow = 0; q[0] = s;
-		rep(L,0,31) do { // 'int L=30' maybe faster for random data
-			lvl = ptr = vi(sz(q));
-			int qi = 0, qe = lvl[s] = 1;
-			while (qi < qe && !lvl[t]) {
-				int v = q[qi++];
-				for (Edge e : adj[v])
-					if (!lvl[e.to] && e.c >> (30 - L))
-						q[qe++] = e.to, lvl[e.to] = lvl[v] + 1;
-			}
-			while (ll p = dfs(s, t, LLONG_MAX)) flow += p;
-		} while (lvl[t]);
-		return flow;
-	}
-	bool leftOfMinCut(int a) { return lvl[a] != 0; }
+    struct Edge {
+        int to, rev;
+        ll cap, orig_cap;
+        ll flow() const { // how much flow in this edge
+            return max(0LL,orig_cap-cap);
+        }
+    };
+
+    int n;
+    vector<vector<Edge>> adj;
+    vi level, next_edge, q;
+
+    Dinic(int n) : n(n), adj(n), level(n), next_edge(n), q(n) {}
+
+    void add_edge(int from, int to, ll cap, ll rev_cap = 0) {
+        Edge fwd = {to, (int)adj[to].size(), cap, cap};
+        Edge rev = {from, (int)adj[from].size(), rev_cap, rev_cap};
+        adj[from].emplace_back(fwd);
+        adj[to].emplace_back(rev);
+    }
+
+    bool bfs(int s, int t) {
+        fill(all(level), -1);
+        int q_head=0, q_tail=0;
+        q[q_tail++] = s;
+        level[s] = 0;
+
+        while (q_head < q_tail && level[t] == -1) {
+            int v=q[q_head++];
+            for (const Edge &e : adj[v]) {
+                if (e.cap > 0 && level[e.to] == -1) {
+                    level[e.to] = level[v] + 1;
+                    q[q_tail++] = e.to;
+                }
+            }
+        }
+        return level[t] != -1;
+    }
+
+    ll dfs(int v, int t, ll pushed) {
+        if (v==t || pushed==0) return pushed;
+        for (int &cid=next_edge[v]; cid<(int)adj[v].size(); cid++) {
+            Edge &e=adj[v][cid];
+            if (e.cap > 0 && level[e.to] == level[v] + 1) {
+                ll tr=dfs(e.to, t, min(pushed, e.cap));
+                if (tr == 0) continue;
+                e.cap -= tr;
+                adj[e.to][e.rev].cap += tr;
+                return tr;
+            }
+        }
+        return 0;
+    }
+
+    ll max_flow(int s, int t) {
+        const ll INF = LLONG_MAX;
+        ll flow = 0;
+        while (bfs(s, t)) {
+            fill(all(next_edge), 0);
+            while (ll pushed = dfs(s, t, INF))  flow += pushed;
+        }
+        return flow;
+    }
+
+    bool is_in_source_side_of_min_cut(int v) const {
+        return level[v] != -1;
+    }
 };

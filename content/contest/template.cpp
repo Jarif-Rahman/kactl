@@ -4,8 +4,6 @@ using namespace std;
 #define all(x) begin(x), end(x)
 #define sz(x) (int)(x).size()
 typedef long long ll;
-typedef pair<int, int> pii;
-typedef vector<int> vi;
 int dx[8] = {0, 1, 0, -1, 1, 1, -1, -1}; // URDL, UR DR DL UL
 int dy[8] = {1, 0, -1, 0, 1, -1, -1, 1};
 template<class T> void print(const vector<T> &v) { for (auto &x : v) cout << x << ' '; cout << endl; }

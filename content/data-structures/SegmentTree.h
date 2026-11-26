@@ -1,31 +1,33 @@
 /**
- * Author: Lucian Bicsi
- * Date: 2017-10-31
- * License: CC0
- * Source: folklore
- * Description: Zero-indexed max-tree. Bounds are inclusive to the left and exclusive to the right.
- * Can be changed by modifying T, f and unit.
+ * Author: Yeo Swe Hon
+ * Description: 0-indexed segtree, point set, inclusive query [l,r].
+ * Customise Node, unit (identity) and merge (associative).
+ * Usage: st.set(p,{x}), st.qry(l,r)
  * Time: O(\log N)
- * Status: stress-tested
+ * Memory: O(N)
  */
 #pragma once
 
-struct Tree {
-	typedef int T;
-	static constexpr T unit = INT_MIN;
-	T f(T a, T b) { return max(a, b); } // (any associative fn)
-	vector<T> s; int n;
-	Tree(int n = 0, T def = unit) : s(2*n, def), n(n) {}
-	void update(int pos, T val) {
-		for (s[pos += n] = val; pos /= 2;)
-			s[pos] = f(s[pos * 2], s[pos * 2 + 1]);
-	}
-	T query(int b, int e) { // query [b, e)
-		T ra = unit, rb = unit;
-		for (b += n, e += n; b < e; b /= 2, e /= 2) {
-			if (b % 2) ra = f(ra, s[b++]);
-			if (e % 2) rb = f(s[--e], rb);
-		}
-		return f(ra, rb);
-	}
+struct Node{
+    ll sum;
+};
+struct SegTree{
+    int n;
+    Node unit = {0};
+    vector<Node> t;
+    SegTree(int n): n(n), t(2*n, unit) {}
+    Node merge(Node a, Node b){
+        return {a.sum + b.sum};
+    }
+    void set(int p, Node x){
+        for(t[p += n] = x; p > 1; p >>= 1) t[p>>1] = merge(t[p&~1], t[p|1]);
+    }
+    Node qry(int l, int r){
+        Node a = unit, b = unit;
+        for(l += n, r += n + 1; l < r; l >>= 1, r >>= 1){
+            if(l&1) a = merge(a, t[l++]);
+            if(r&1) b = merge(t[--r], b);
+        }
+        return merge(a,b);
+    }
 };
